@@ -1,6 +1,6 @@
 # Lab Inventory App
 
-A lightweight React + Vite application to manage and visualize critical lab reagents.  
+A lightweight React + Vite application to manage and visualize laboratory reagents.  
 Features include:
 - Add, edit, and delete reagents with quantity, container type, and notes
 - Minimum stock thresholds highlighted
@@ -10,7 +10,7 @@ Features include:
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 - [React](https://react.dev/) + [Vite](https://vitejs.dev/) (fast dev/build toolchain)
 - [Recharts](https://recharts.org/) (bar chart visualization)
 - [Framer Motion](https://www.framer.com/motion/) (animations)
@@ -20,7 +20,9 @@ Features include:
 
 ---
 
-## 🧑‍💻 Development
+## Deployment
+
+### Development
 
 Start the local dev server:
 ```bash
@@ -29,21 +31,22 @@ npm run dev
 ```
 The app runs at http://localhost:5173 by default.
 
-##  🚀 Production Build
+###  Production Build
 
-Create an optimized build:
-`npm run build`
-This outputs to the dist/ directory.
+Create an optimized build that outputs to the dist/ directory
+```
+npm run build
+```  
 
 To preview the production build locally:
-```bash
+```
 npm run preview
 ```
-## 🌐 Deployment on GitHub Pages
+### Deployment on GitHub Pages
 
 We use project pages hosted under:
 
-https://<username>.github.io/lab-inventory-app/
+`https://<username>.github.io/lab-inventory-app/`
 
 ### Base Path
 
@@ -55,8 +58,9 @@ export default defineConfig(({ mode }) => ({
   // ...
 }))
 ```
+---
 
-## 🤖 Automatic Deployment (GitHub Actions)
+## Automatic Deployment (GitHub Actions)
 
 Instead of manually copying the build into docs/, we use a GitHub Actions workflow:
 * File: .github/workflows/pages-docs.yml
@@ -72,20 +76,26 @@ GitHub Pages is configured (Settings → Pages) to serve from the /docs folder o
 
 This means any code pushed to main → CI builds → site auto-updates 🎉
 
-## 📊 Sync with Google Sheets
+---
+
+## Sync with Google Sheets
 
 The app includes optional sync with a Google Apps Script backend.
 * BASE_URL points to a deployed Apps Script Web App (/exec URL).
 * Data is pulled on load (action=items) and updated via upsert/delete actions.
 * We use Content-Type: text/plain in POSTs to avoid CORS preflight issues.
 
-** 📝 Notes
+Code in the [code.gs](code.gs) file to be copy/pasted into Extension -> Apps Script of your google sheet.
+
+## Notes
 
 If you want a custom domain, configure it in GitHub Pages settings (CNAME).
 
 For SPA routes to work on Pages, we duplicate index.html → 404.html.
 
 Make sure your Apps Script is deployed with “Anyone with link” and “Execute as Me”.
+
+---
 
 ## 📄 License
 This project is licensed under the MIT License — see the [LICENSE](license.txt) file for details.
