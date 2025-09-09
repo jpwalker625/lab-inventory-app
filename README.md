@@ -88,4 +88,4 @@ For SPA routes to work on Pages, we duplicate index.html → 404.html.
 Make sure your Apps Script is deployed with “Anyone with link” and “Execute as Me”.
 
 ## 📄 License
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](license.txt) file for details.
