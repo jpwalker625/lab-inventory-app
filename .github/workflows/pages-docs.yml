@@ -1,0 +1,47 @@
+name: Deploy to GitHub Pages (docs)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # allow committing to the repo
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build (Vite)
+        run: npm run build
+
+      - name: Publish dist → docs (with SPA 404)
+        run: |
+          rm -rf docs
+          cp -r dist docs
+          cp docs/index.html docs/404.html
+
+      - name: Commit & push docs (only if changed)
+        run: |
+          if [[ -n "$(git status --porcelain docs)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add docs
+            git commit -m "CI: publish to GitHub Pages (docs)"
+            git push
+          else
+            echo "No changes in docs — skipping commit."
+          fi
